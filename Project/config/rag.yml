@@ -1,0 +1,11 @@
+# ===== 云端模型（阿里通义 DashScope）=====
+# 只有 factory.py 里启用 ChatTongyi 那一版才会读这两行，当前用 Ollama 时它们不起作用
+chat_model_name: qwen3.8-flash            # 云端对话模型名
+embedding_model_name: text-embedding-v4   # 云端向量模型名
+
+# ===== 本地 Ollama 模型（当前 factory.py 实际使用的是这一组）=====
+ollama_base_url: http://127.0.0.1:11434   # Ollama 服务地址，本机默认 11434 端口
+ollama_chat_model: qwen3:8b               # 对话模型，名字必须和 ollama list 完全一致
+ollama_embedding_model: qwen3-embedding:0.6b  # 向量模型，建库和检索必须用同一个，否则报维度不匹配
+keep_alive: 30m                           # 推理完模型在显存里保留 30 分钟，避免每次重新加载
+num_ctx: 8192                             # 上下文窗口 8192 tokens；越大越吃显存，紧张就改 4096
